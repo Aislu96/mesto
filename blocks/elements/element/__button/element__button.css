@@ -1,0 +1,21 @@
+.element__button {
+    background-image: url('../../../../images/like.svg');
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-width: 22px;
+    min-height: 19px;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    transition: 0.3s ease-in-out;
+}
+
+.element__button:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+.element__button:active {
+    color: #000000;
+}

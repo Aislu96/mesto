@@ -1,0 +1,19 @@
+.profile__editButton {
+    border: 1px solid #FFFFFF;
+    padding: 7px;
+    background-image: url("../../../images/Vector.svg");
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-position: center;
+    min-width: 24px;
+    min-height: 24px;
+    transition: 0.3s ease-in-out;
+}
+
+@media screen and (max-width: 750px){
+    .profile__editButton {
+        min-width: 18px;
+        min-height: 18px;
+        padding: 5.25px;
+    }
+}
