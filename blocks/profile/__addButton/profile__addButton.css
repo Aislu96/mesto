@@ -18,3 +18,9 @@
         padding: 17px 133px;
     }
 }
+
+
+.profile__addButton:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
