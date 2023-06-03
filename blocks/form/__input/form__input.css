@@ -12,3 +12,13 @@
     line-height: 17px;
     color: #000000;
 }
+
+.form__input:last-child {
+    margin-bottom: 48px;
+}
+
+@media screen and (max-width: 650px){
+    .form__input:last-child {
+        margin-bottom: 45px;
+    }
+}

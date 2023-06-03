@@ -5,8 +5,8 @@ const popup = document.querySelector('.popup');
 const popupOpened = document.querySelector('.popup_opened');
 const popupClose = document.querySelector('.popup__close');
 const popupSave = document.querySelector('.form__button');
-const formName = document.querySelector('.form__name');
-const formJob = document.querySelector('.form__job');
+const formName = document.querySelector('.form__input_name');
+const formJob = document.querySelector('.form__input_job');
 
 
 // Функция открытия popup
