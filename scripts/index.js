@@ -26,7 +26,7 @@ function profileEditing(evt) {
     evt.preventDefault();
     nameInput.textContent = formName.value;
     jobInput.textContent = formJob.value;
-    popup.classList.remove('popup_opened');
+    closePopup();
 }
 
 

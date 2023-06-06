@@ -2,7 +2,6 @@
     border-radius: 10px;
     background: #FFFFFF;
     max-width: 430px;
-    max-height: 330px;
     box-sizing: border-box;
     padding: 34px 36px 37px;
     display: flex;
@@ -18,7 +17,6 @@
 @media screen and (max-width: 650px){
     .popup__container {
         max-width: 282px;
-        max-height: 322px;
         padding: 25px 22px;
     }
 }
