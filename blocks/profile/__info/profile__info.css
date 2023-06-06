@@ -1,6 +1,6 @@
 .profile__info {
     display: grid;
-    margin: 0;
+    margin: 0 0 0 30px;
     padding: 0;
     gap: 16px 18px;
     grid-template-columns: minmax(min-content, max-content)
@@ -13,5 +13,7 @@
         display: flex;
         flex-wrap: wrap;
         gap: 14px 10px;
+        justify-content: center;
+        margin: 0 auto;
     }
 }
