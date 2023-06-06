@@ -1,6 +1,7 @@
 .profile__info {
     display: grid;
-    margin: 0 0 0 30px;
+    margin: 0;
+    padding: 0;
     gap: 16px 18px;
     grid-template-columns: minmax(min-content, max-content)
                          minmax(min-content, max-content);
@@ -10,7 +11,6 @@
 @media screen and (max-width: 750px){
     .profile__info {
         display: flex;
-        justify-content: center;
         flex-wrap: wrap;
         gap: 14px 10px;
     }

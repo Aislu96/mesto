@@ -9,63 +9,62 @@
 <body class="page">
 <header class="header">
     <img src="./images/logo.svg" class="header__logo" alt="Логотип проекта Mesto">
-    <div class="header__line"></div>
 </header>
 
 <main>
     <section class="profile">
-        <img src="./images/avatar.jpg" alt="Жак-Ив Кусто" class="profile__avatar">
+        <img src="./images/avatar.jpg" alt="Жак-Ив Кусто на фоне моря смотри в даль." class="profile__avatar">
         <div class="profile__info">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
-            <button type="button" class="profile__editButton"></button>
+            <button type="button" class="profile__edit-button" aria-label="Редактирование"></button>
             <p class="profile__subtitle">Исследователь океана</p>
         </div>
-        <button type="button" class="profile__addButton"></button>
+        <button type="button" class="profile__add-button" aria-label="Добавление"></button>
     </section>
 
     <section class="elements">
-        <div class="element">
-            <img src="./images/karachevsk.jpg" alt="Карачевск" class="element__image">
+        <article class="element">
+            <img src="./images/karachevsk.jpg" alt="Карачевск замок в горах." class="element__image">
             <div class="element__group">
-                <p class="element__text">Карачевск</p>
-                <button type="button" class="element__button"></button>
+                <h2 class="element__text">Карачевск</h2>
+                <button type="button" class="element__button" aria-label="Лайк"></button>
             </div>
-        </div>
-        <div class="element">
-            <img src="./images/gora_elbrys.jpg" alt="Гора Эльбрус" class="element__image">
+        </article>
+        <article class="element">
+            <img src="./images/gora_elbrys.jpg" alt="Гора Эльбрус на фоне заката." class="element__image">
             <div class="element__group">
-                <p class="element__text">Гора Эльбрус</p>
-                <button type="button" class="element__button"></button>
+                <h2 class="element__text">Гора Эльбрус</h2>
+                <button type="button" class="element__button" aria-label="Лайк"></button>
             </div>
-        </div>
-        <div class="element">
-            <img src="./images/dombay.jpg" alt="Домбай" class="element__image">
+        </article>
+        <article class="element">
+            <img src="./images/dombay.jpg" alt="Домбай красивый лес на фоне снежных гор." class="element__image">
             <div class="element__group">
-                <p class="element__text">Домбай</p>
-                <button type="button" class="element__button"></button>
+                <h2 class="element__text">Домбай</h2>
+                <button type="button" class="element__button" aria-label="Лайк"></button>
             </div>
-        </div>
-        <div class="element">
-            <img src="./images/gora_elbrys.jpg" alt="Гора Эльбрус" class="element__image">
+        </article>
+        <article class="element">
+            <img src="./images/gora_elbrys.jpg" alt="Гора Эльбрус на фоне заката." class="element__image">
             <div class="element__group">
-                <p class="element__text">Гора Эльбрус</p>
-                <button type="button" class="element__button"></button>
+                <h2 class="element__text">Гора Эльбрус</h2>
+                <button type="button" class="element__button" aria-label="Лайк"></button>
             </div>
-        </div>
-        <div class="element">
-            <img src="./images/dombay.jpg" alt="Домбай" class="element__image">
+        </article>
+        <article class="element">
+            <img src="./images/dombay.jpg" alt="Домбай красивый лес на фоне снежных гор." class="element__image">
             <div class="element__group">
-                <p class="element__text">Домбай</p>
-                <button type="button" class="element__button"></button>
+                <h2 class="element__text">Домбай</h2>
+                <button type="button" class="element__button" aria-label="Лайк"></button>
             </div>
-        </div>
-        <div class="element">
-            <img src="./images/karachevsk.jpg" alt="Карачевск" class="element__image">
+        </article>
+        <article class="element">
+            <img src="./images/karachevsk.jpg" alt="Карачевск замок в горах." class="element__image">
             <div class="element__group">
-                <p class="element__text">Карачaево-Черкесия</p>
-                <button type="button" class="element__button"></button>
+                <h2 class="element__text">Карачaево-Черкесия</h2>
+                <button type="button" class="element__button" aria-label="Лайк"></button>
             </div>
-        </div>
+        </article>
     </section>
 </main>
 
@@ -74,19 +73,16 @@
 </footer>
 <div class="popup">
     <div class="popup__body">
-        <form class="popup__container">
-            <button type="button" class="popup__close"></button>
+        <button type="button" class="popup__close" aria-label="Закрыть"></button>
+        <form class="popup__container" name="popupForm">
             <h3 class="popup__title">Редактировать профиль</h3>
-            <label>
-                <input class='popup__input popup__input_name' type='text'>
-            </label>
-            <label>
-                <input class='popup__input popup__input_job' type='text'>
-            </label>
-            <button type="button" class='popup__button popup__button_text'>Сохранить</button>
+            <input class="popup__input popup__input_type_name" type="text" name="username" placeholder="Имя">
+            <input class="popup__input popup__input_type_job" type="text" name="job" placeholder="О себе">
+            <button type="submit" class="popup__button popup__button_type_text" aria-label="Сохранить">Сохранить
+            </button>
         </form>
     </div>
 </div>
-<script src="./pages/index.js"></script>
+<script src="./scripts/index.js"></script>
 </body>
 </html>
