@@ -31,8 +31,7 @@ const createCard = (data) => {
     cardsTemplateText.textContent = data.name;
     cardsTemplateImage.src = data.link;
     cardsTemplateImage.alt = data.name;
-    // Вставляем склонированный контент на страницу
-    cardsContainer.prepend(cardsTemplateClone);
+
     //Функция для открытия одной карточки
     function popupCardsOpen() {
         popupCardsImage.src = cardsTemplateImage.src;
@@ -40,6 +39,7 @@ const createCard = (data) => {
         popupCardsText.textContent = cardsTemplateText.textContent;
         openFormCards();
     }
+
     //Функции для вызова на реакцию пользователя
     cardsButtonLike.addEventListener('click', likeElement);
     cardsDeleteButton.addEventListener('click', createCardDelete);
@@ -47,7 +47,7 @@ const createCard = (data) => {
     return cardsTemplateClone;
 }
 
-// Функция лайка
+//Функция лайка
 const likeElement = (evt) => {
     evt.target.classList.toggle('element__button_active');
 };
@@ -57,13 +57,14 @@ const createCardDelete = (evt) => {
     evt.target.closest('.element').remove();
 };
 
-//Функция добавления карточки
-let renderElements = (data) => cardsContainer.prepend(createCard(data));
+function renderCards() {
+    //Перебор массива
+    initialCards.forEach((data) => {
+        const newCard = createCard(data)
+        cardsContainer.append(newCard)
+    });
+}
 
-//Перебор массива
-initialCards.forEach((data) => {
-    renderElements(data);
-});
 
 //Функция открытия popup
 function openPopup(el) {
@@ -119,13 +120,12 @@ function submitProfileForm(evt) {
 //Новое место
 const submitAddCard = (evt) => {
     evt.preventDefault();
-    renderElements({
-        name: popupPlaceInputText.value,
-        link: popupPlaceInputLink.value,
-    });
+    const newCard = createCard({name: popupPlaceInputText.value, link: popupPlaceInputLink.value})
+    cardsContainer.prepend(newCard);
 
-    evt.target.reset();
     closePopupPlace();
+    popupPlaceInputText.value = '';
+    popupPlaceInputLink.value = '';
 }
 
 
@@ -137,3 +137,5 @@ popupEditForm.addEventListener('submit', submitProfileForm);
 popupUserOPenButton.addEventListener('click', addOpenForm);
 popupAddForm.addEventListener('submit', submitAddCard);
 popupCloseImage.addEventListener('click', closePopupImage);
+
+renderCards();
