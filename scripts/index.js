@@ -33,7 +33,7 @@ const createCard = (data) => {
     cardsTemplateImage.alt = data.name;
 
     //Функция для открытия одной карточки
-    function popupCardsOpen() {
+    function openPopupCards() {
         popupCardsImage.src = cardsTemplateImage.src;
         popupCardsImage.alt = cardsTemplateText.textContent;
         popupCardsText.textContent = cardsTemplateText.textContent;
@@ -60,8 +60,8 @@ const createCardDelete = (evt) => {
 function renderCards() {
     //Перебор массива
     initialCards.forEach((data) => {
-        const newCard = createCard(data)
-        cardsContainer.append(newCard)
+        const newCard = createCard(data);
+        cardsContainer.append(newCard);
     });
 }
 
