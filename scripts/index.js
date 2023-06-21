@@ -43,7 +43,7 @@ const createCard = (data) => {
     //Функции для вызова на реакцию пользователя
     cardsButtonLike.addEventListener('click', likeElement);
     cardsDeleteButton.addEventListener('click', createCardDelete);
-    cardsTemplateImage.addEventListener('click', popupCardsOpen);
+    cardsTemplateImage.addEventListener('click', openPopupCards);
     return cardsTemplateClone;
 }
 
@@ -93,28 +93,12 @@ function closePopup(popup) {
     popup.classList.remove('popup_opened');
 }
 
-// Функция закрытия popup профиль
-function closePopupProfile() {
-    closePopup(popupEditForm);
-}
-
-// Функция закрытия popup новое место
-function closePopupPlace() {
-    closePopup(popupAddForm);
-}
-
-// Функция закрытия popup карточки
-function closePopupImage() {
-    closePopup(popupPhotoCards);
-}
-
-
 // Функция редактирования профиля
 function submitProfileForm(evt) {
     evt.preventDefault();
     profileInputName.textContent = formInputName.value;
     profileInputJob.textContent = formInputJob.value;
-    closePopupProfile();
+    closePopup(popupEditForm);
 }
 
 //Новое место
@@ -123,7 +107,7 @@ const submitAddCard = (evt) => {
     const newCard = createCard({name: popupPlaceInputText.value, link: popupPlaceInputLink.value})
     cardsContainer.prepend(newCard);
 
-    closePopupPlace();
+    closePopup(popupAddForm);
     popupPlaceInputText.value = '';
     popupPlaceInputLink.value = '';
 }
@@ -131,11 +115,11 @@ const submitAddCard = (evt) => {
 
 //Функции для вызова на реакцию пользователя
 popupProfileOpenButton.addEventListener('click', editOpenForm);
-popupCloseProfile.addEventListener('click', closePopupProfile);
-popupClosePlace.addEventListener('click', closePopupPlace);
+popupCloseProfile.addEventListener('click', () => closePopup(popupEditForm))
+popupClosePlace.addEventListener('click', () => closePopup(popupAddForm));
 popupEditForm.addEventListener('submit', submitProfileForm);
 popupUserOPenButton.addEventListener('click', addOpenForm);
 popupAddForm.addEventListener('submit', submitAddCard);
-popupCloseImage.addEventListener('click', closePopupImage);
+popupCloseImage.addEventListener('click', () => closePopup(popupPhotoCards));
 
 renderCards();
