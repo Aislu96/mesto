@@ -1,7 +1,7 @@
 .popup__input {
     border: none;
     border-bottom: 1px solid rgba(0,0,0,.2);
-    margin: 0 auto 30px;
+    margin: 0 auto;
     height: 27px;
     box-sizing: border-box;
     outline: none;
@@ -13,12 +13,13 @@
     color: #000000;
 }
 
-.popup__input:last-of-type {
-    margin-bottom: 48px;
-}
+/*.popup__input:last-of-type {*/
+/*    margin-bottom: 48px;*/
+/*}*/
 
-@media screen and (max-width: 650px){
-    .popup__input:last-of-type {
-        margin-bottom: 45px;
-    }
-}
+/*@media screen and (max-width: 650px){*/
+/*    .popup__input:last-of-type {*/
+/*        margin-bottom: 45px;*/
+/*    }*/
+/*}*/
+
