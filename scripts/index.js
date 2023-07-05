@@ -78,6 +78,7 @@ function renderCards() {
 //Функция открытия popup
 function openPopup(el) {
     el.classList.add('popup_opened');
+    document.addEventListener('keydown', closePopupEsc);
 }
 
 // Функция открытия popup профиля
@@ -117,15 +118,14 @@ const submitAddCard = (evt) => {
     const newCard = createCard({name: popupPlaceInputText.value, link: popupPlaceInputLink.value})
     cardsContainer.prepend(newCard);
     closePopup(popupAddForm);
-    popupPlaceInputText.value = '';
-    popupPlaceInputLink.value = '';
+    evt.target.reset();
 }
 
 //Функция закрытия оверлея
 function closeOverlay() {
     popup.forEach((el) => {
-        el.addEventListener('click', function (evt) {
-            if (evt.target.classList.contains('popup')) {
+        el.addEventListener('mousedown', function (evt) {
+            if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__close')) {
                 closePopup(evt.target);
             }
         });
@@ -136,16 +136,7 @@ function closeOverlay() {
 function closePopupEsc(evt) {
     if (evt.key === "Escape") {
         const popupOpened = document.querySelector('.popup_opened');
-        if (popupOpened !== null) {
-            closePopup(popupOpened);
-        }
-    }
-}
-
-//Функция для дабавления карточки через enter
-function keyHandler(evt) {
-    if (evt.key === 'Enter') {
-        createCard();
+        closePopup(popupOpened);
     }
 }
 
@@ -157,8 +148,5 @@ popupEditForm.addEventListener('submit', submitProfileForm);
 popupUserOPenButton.addEventListener('click', addOpenForm);
 popupAddForm.addEventListener('submit', submitAddCard);
 popupCloseImage.addEventListener('click', () => closePopup(popupPhotoCards));
-document.addEventListener('keyup', closePopupEsc);
-popupCardsImage.addEventListener('keydown', keyHandler);
-popupCardsText.addEventListener('keydown', keyHandler);
 closeOverlay();
 renderCards();
