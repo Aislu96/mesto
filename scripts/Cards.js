@@ -1,18 +1,18 @@
-export class Cards {
+export class Card {
     #cardsTemplateElement;
     #templateSelector;
     #name;
     #link;
-    #likeElement;
-    #createCardDelete;
     #openPopupCards;
+    #likeButton;
+    #cardsDeleteButton;
+    #cardsTemplateImage;
+    #cardsTemplateText;
 
-    constructor({name, link, likeElement, createCardDelete, openPopupCards}, templateSelector) {
+    constructor({name, link, openPopupCards}, templateSelector) {
         this.#name = name;
         this.#link = link;
         this.#templateSelector = templateSelector;
-        this.#likeElement = likeElement;
-        this.#createCardDelete = createCardDelete;
         this.#openPopupCards = openPopupCards;
     }
 
@@ -20,24 +20,43 @@ export class Cards {
         return document.querySelector(this.#templateSelector).content.querySelector('.element').cloneNode(true);
     }
 
+    //Функция лайка
+    #putLikeElement() {
+        this.#likeButton.classList.toggle('element__button_active');
+    };
+
+//Функция удаления карточки
+    #createCardDelete() {
+        this.#cardsTemplateElement.remove();
+    };
+
+    #setEventListeners() {
+        this.#likeButton.addEventListener('click', () => {
+            this.#putLikeElement()
+        });
+        this.#cardsDeleteButton.addEventListener('click', () => {
+            this.#createCardDelete();
+        });
+        this.#cardsTemplateImage.addEventListener('click', () => {
+            this.#openPopupCards(this.#cardsTemplateImage, this.#cardsTemplateText)
+        });
+    }
+
     //Создание карточки
     createCard() {
         // Клонируем содержимое тега <template>
         this.#cardsTemplateElement = this.#getTemplate();
-        const cardsTemplateImage = this.#cardsTemplateElement.querySelector('.element__image');
-        const cardsDeleteButton = this.#cardsTemplateElement.querySelector('.element__delete');
+        this.#cardsTemplateImage = this.#cardsTemplateElement.querySelector('.element__image');
+        this.#cardsDeleteButton = this.#cardsTemplateElement.querySelector('.element__delete');
         const cardsGroupTemplate = this.#cardsTemplateElement.querySelector('.element__group');
-        const cardsTemplateText = cardsGroupTemplate.querySelector('.element__text');
-        const cardsButtonLike = cardsGroupTemplate.querySelector('.element__button');
+        this.#cardsTemplateText = cardsGroupTemplate.querySelector('.element__text');
+        this.#likeButton = cardsGroupTemplate.querySelector('.element__button');
         // Наполняем содержимым
-        cardsTemplateText.textContent = this.#name;
-        cardsTemplateImage.src = this.#link;
-        cardsTemplateImage.alt = this.#name;
-        //Функции для вызова на реакцию пользователя
-        cardsButtonLike.addEventListener('click', () => this.#likeElement(cardsButtonLike));
-        cardsDeleteButton.addEventListener('click', () => this.#createCardDelete(this.#cardsTemplateElement));
-        cardsTemplateImage.addEventListener('click', () => this.#openPopupCards(cardsTemplateImage, cardsTemplateText));
+        this.#cardsTemplateText.textContent = this.#name;
+        this.#cardsTemplateImage.src = this.#link;
+        this.#cardsTemplateImage.alt = this.#name;
 
+        this.#setEventListeners();
         return this.#cardsTemplateElement;
     }
 }

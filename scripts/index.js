@@ -1,5 +1,5 @@
 import {initialCards} from "./arrayCards.js";
-import {Cards} from "./Cards.js";
+import {Card} from "./Cards.js";
 import {FormValidator} from "./FormValidator.js";
 //Переменные для профиля
 const popup = document.querySelectorAll('.popup');
@@ -37,30 +37,20 @@ const openPopupCards = (cardsTemplateImage, cardsTemplateText) => {
     openFormCards();
 }
 
-//Функция лайка
-const likeElement = (likeElement) => {
-    likeElement.classList.toggle('element__button_active');
-};
-
-//Функция удаления карточки
-const createCardDelete = (deleteElement) => {
-    deleteElement.remove();
-};
-
-function renderCards() {
-    //Перебор массива
-    initialCards.forEach((data) => {
-        let link = data.link;
-        let name = data.name;
-        const cardsElement = new Cards({
-            name,
-            link,
-            likeElement,
-            createCardDelete,
-            openPopupCards
-        }, '#cards').createCard();
-        cardsContainer.append(cardsElement);
-    });
+function renderCards(container, data, position = 'append') {
+    const link = data.link;
+    const name = data.name;
+    const cardsElement = new Card({name, link, openPopupCards}, '#cards').createCard();
+    switch (position) {
+        case 'append':
+            container.append(cardsElement);
+            break;
+        case 'prepend':
+            container.prepend(cardsElement);
+            break;
+        default:
+            break;
+    }
 }
 
 //Функция открытия popup
@@ -69,24 +59,18 @@ function openPopup(el) {
     document.addEventListener('keydown', closePopupEsc);
 }
 
-//Обнуление инпутов
-function clearCardFormInputs(value, item){
-    value.form.reset();
-    item.form.reset();
-}
-
 // Функция открытия popup профиля
 function editOpenForm() {
-    clearCardFormInputs(formInputName, formInputJob);
-    openPopup(popupEditForm);
     formInputName.value = profileInputName.textContent;
     formInputJob.value = profileInputJob.textContent;
+    openPopup(popupEditForm);
     popupEditFormValidation.resetValidation();
 }
 
 // Функция открытия popup новое место
 function addOpenForm() {
-    clearCardFormInputs(popupPlaceInputText, popupPlaceInputLink);
+    popupPlaceInputText.form.reset();
+    popupPlaceInputLink.form.reset();
     openPopup(popupAddForm);
     popupAddFormValidation.resetValidation();
 }
@@ -113,14 +97,8 @@ function submitProfileForm(evt) {
 //Новое место
 const submitAddCard = (evt) => {
     evt.preventDefault();
-    const newCard = new Cards({name: popupPlaceInputText.value, link: popupPlaceInputLink.value,
-        likeElement,
-        createCardDelete,
-        openPopupCards
-    }, '#cards').createCard();
-    cardsContainer.prepend(newCard);
+    renderCards(cardsContainer, {name: popupPlaceInputText.value, link: popupPlaceInputLink.value}, 'prepend');
     closePopup(popupAddForm);
-
     evt.target.reset();
 }
 
@@ -152,7 +130,9 @@ popupUserOpenButton.addEventListener('click', addOpenForm);
 popupAddForm.addEventListener('submit', submitAddCard);
 popupCloseImage.addEventListener('click', () => closePopup(popupPhotoCards));
 closeOverlay();
-renderCards();
+initialCards.forEach(function (item) {
+    renderCards(cardsContainer, item);
+})
 
 const config = {
     formSelector: '.popup__container',
@@ -163,6 +143,6 @@ const config = {
 };
 
 const popupEditFormValidation = new FormValidator(config, popupEditForm);
-popupEditFormValidation.inclusionValidation();
+popupEditFormValidation.hangHandlerSubmit();
 const popupAddFormValidation = new FormValidator(config, popupAddForm);
-popupAddFormValidation.inclusionValidation();
+popupAddFormValidation.hangHandlerSubmit();
