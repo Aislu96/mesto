@@ -4,7 +4,7 @@ export class FormValidator {
     #inputSelector;
     #submitButtonSelector;
     #formSelector;
-    #formsInput;
+    #formInputs;
 
     constructor(config, formElement) {
         this.#formElement = formElement;
@@ -12,7 +12,7 @@ export class FormValidator {
         this.#config = config;
         this.#inputSelector = config.inputSelector;
         this.#submitButtonSelector = this.#formElement.querySelector(this.#config.submitButtonSelector);
-        this.#formsInput = this.#formElement.querySelectorAll(this.#inputSelector);
+        this.#formInputs = this.#formElement.querySelectorAll(this.#inputSelector);
     }
 
     //Функция блокироки кнопки
@@ -64,16 +64,16 @@ export class FormValidator {
         // Управляем вкл или выкл кнопки сабмита формы
         this.#toggleButtonState();
         // Очищаем ошибки в инпутах формы
-        [...this.#formsInput].forEach((formInput) => {
+        [...this.#formInputs].forEach((formInput) => {
             const errorElement = this.#formElement.querySelector(`#${formInput.name}-error`);
             this.#hideInputError(formInput, errorElement);
         });
     }
 
     // Функция добавления обработчика событий
-    #hangHandlerSubmit() {
+    #setEventListeners() {
         this.#toggleButtonState();
-        [...this.#formsInput].forEach((formInput) => {
+        [...this.#formInputs].forEach((formInput) => {
             formInput.addEventListener('input', () => {
                 this.#toggleButtonState();
                 this.#checkInputValidity(formInput);
@@ -87,6 +87,6 @@ export class FormValidator {
     }
 
     hangHandlerSubmit() {
-        this.#hangHandlerSubmit();
+        this.#setEventListeners();
     }
 }

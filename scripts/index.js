@@ -1,5 +1,5 @@
 import {initialCards} from "./arrayCards.js";
-import {Card} from "./Cards.js";
+import {Card} from "./Card.js";
 import {FormValidator} from "./FormValidator.js";
 //Переменные для профиля
 const popup = document.querySelectorAll('.popup');
@@ -37,7 +37,7 @@ const openPopupCards = (cardsTemplateImage, cardsTemplateText) => {
     openFormCards();
 }
 
-function renderCards(container, data, position = 'append') {
+function renderCard(container, data, position = 'append') {
     const link = data.link;
     const name = data.name;
     const cardsElement = new Card({name, link, openPopupCards}, '#cards').createCard();
@@ -97,7 +97,7 @@ function submitProfileForm(evt) {
 //Новое место
 const submitAddCard = (evt) => {
     evt.preventDefault();
-    renderCards(cardsContainer, {name: popupPlaceInputText.value, link: popupPlaceInputLink.value}, 'prepend');
+    renderCard(cardsContainer, {name: popupPlaceInputText.value, link: popupPlaceInputLink.value}, 'prepend');
     closePopup(popupAddForm);
     evt.target.reset();
 }
@@ -131,7 +131,7 @@ popupAddForm.addEventListener('submit', submitAddCard);
 popupCloseImage.addEventListener('click', () => closePopup(popupPhotoCards));
 closeOverlay();
 initialCards.forEach(function (item) {
-    renderCards(cardsContainer, item);
+    renderCard(cardsContainer, item);
 })
 
 const config = {

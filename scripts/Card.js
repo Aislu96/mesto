@@ -28,6 +28,7 @@ export class Card {
 //Функция удаления карточки
     #createCardDelete() {
         this.#cardsTemplateElement.remove();
+        this.#cardsTemplateElement = null;
     };
 
     #setEventListeners() {
