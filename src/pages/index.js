@@ -1,6 +1,7 @@
-import {initialCards} from "./arrayCards.js";
-import {Card} from "./Card.js";
-import {FormValidator} from "./FormValidator.js";
+import {initialCards} from "../components/arrayCards.js";
+import {Card} from "../components/Card.js";
+import {FormValidator} from "../components/FormValidator.js";
+import './index.css';
 //Переменные для профиля
 const popup = document.querySelectorAll('.popup');
 const popupProfileOpenButton = document.querySelector('.profile__edit-button');
