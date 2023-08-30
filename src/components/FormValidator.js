@@ -1,4 +1,6 @@
-export class FormValidator {
+import {config} from "../utils/constants.js";
+
+class FormValidator {
     #formElement;
     #config;
     #inputSelector;
@@ -90,3 +92,5 @@ export class FormValidator {
         this.#setEventListeners();
     }
 }
+
+export {FormValidator, config};

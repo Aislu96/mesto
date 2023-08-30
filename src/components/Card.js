@@ -3,17 +3,17 @@ export class Card {
     #templateSelector;
     #name;
     #link;
-    #openPopupCards;
     #likeButton;
     #cardsDeleteButton;
     #cardsTemplateImage;
     #cardsTemplateText;
+    #handelCardClick;
 
-    constructor({name, link, openPopupCards}, templateSelector) {
+    constructor(name, link, handelCardClick, templateSelector) {
         this.#name = name;
         this.#link = link;
         this.#templateSelector = templateSelector;
-        this.#openPopupCards = openPopupCards;
+        this.#handelCardClick = handelCardClick;
     }
 
     #getTemplate() {
@@ -39,7 +39,7 @@ export class Card {
             this.#createCardDelete();
         });
         this.#cardsTemplateImage.addEventListener('click', () => {
-            this.#openPopupCards(this.#cardsTemplateImage, this.#cardsTemplateText)
+            this.#handelCardClick(this.#cardsTemplateImage, this.#cardsTemplateText)
         });
     }
 
@@ -56,7 +56,6 @@ export class Card {
         this.#cardsTemplateText.textContent = this.#name;
         this.#cardsTemplateImage.src = this.#link;
         this.#cardsTemplateImage.alt = this.#name;
-
         this.#setEventListeners();
         return this.#cardsTemplateElement;
     }

@@ -12,7 +12,8 @@
 
 <main>
     <section class="profile">
-        <img src="<%=require('../src/images/avatar.jpg')%>" alt="Жак-Ив Кусто на фоне моря смотрит в даль." class="profile__avatar">
+        <img src="<%=require('../src/images/avatar.jpg')%>" alt="Жак-Ив Кусто на фоне моря смотрит в даль."
+             class="profile__avatar">
         <div class="profile__info">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
             <button type="button" class="profile__edit-button" aria-label="Редактирование"></button>
@@ -34,9 +35,10 @@
         <button type="button" class="popup__close popup__close_profile" aria-label="Закрыть"></button>
         <form class="popup__container" name="popupForm" novalidate>
             <h3 class="popup__title">Редактировать профиль</h3>
-            <input name="input-name" class="popup__input popup__input_type_name" type="text" placeholder="Имя" minlength="2" maxlength="40" required>
+            <input name="input-name" class="popup__input popup__input_type_name" type="text" placeholder="Имя"
+                   minlength="2" maxlength="40" required>
             <span id="input-name-error" class="popup__input-error"></span>
-            <input name="input-job" class="popup__input popup__input_type_job" type="text"  placeholder="О себе"
+            <input name="input-job" class="popup__input popup__input_type_job" type="text" placeholder="О себе"
                    minlength="2" maxlength="200" required>
             <span id="input-job-error" class="popup__input-error"></span>
             <button type="submit" class="popup__button popup__button_type_text" aria-label="Сохранить">Сохранить
@@ -50,9 +52,11 @@
         <button type="button" class="popup__close popup__close_place" aria-label="Закрыть"></button>
         <form class="popup__container popup__containers" name="form-info" novalidate>
             <h3 class="popup__title">Новое место</h3>
-            <input name="input-username" class="popup__input popup__input_type_title" type="text"  placeholder="Название" minlength="2" maxlength="30" required>
+            <input name="input-username" class="popup__input popup__input_type_title" type="text" placeholder="Название"
+                   minlength="2" maxlength="30" required>
             <span id="input-username-error" class="popup__input-error"></span>
-            <input name="input-url" class="popup__input popup__input_type_link" type="url"  placeholder="Ссылка на картинку"  required>
+            <input name="input-url" class="popup__input popup__input_type_link" type="url"
+                   placeholder="Ссылка на картинку" required>
             <span id="input-url-error" class="popup__input-error"></span>
             <button type="submit" class="popup__button popup__button_type_text" aria-label="Создать">Создать
             </button>
@@ -63,7 +67,7 @@
 <div class="popup popup_photo_cards">
     <div class="popup__container-cards">
         <button type="button" class="popup__close popup__close_image" aria-label="Закрыть"></button>
-        <img type= "url" src="#" alt="Изображение картинки" class="popup__cards-image">
+        <img type="url" src="#" alt="Изображение картинки" class="popup__cards-image">
         <h3 class="popup__cards-text"></h3>
     </div>
 </div>
