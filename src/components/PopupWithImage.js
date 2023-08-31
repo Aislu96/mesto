@@ -13,7 +13,7 @@ export class PopupWithImage extends Popup {
 
     open(link, name) {
         this.#popupCardsImage.src = link.src;
-        this.#popupCardsImage.alt = name.alt;
+        this.#popupCardsImage.alt = name.textContent;
         this.#popupCardsText.textContent = name.textContent;
         super.open();
     }

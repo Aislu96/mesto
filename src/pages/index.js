@@ -36,16 +36,16 @@ const userInfo = new UserInfo({name: profileInputName, job: profileInputJob});
 //Функции карточки
 const renderCard = (data => {
     const cardsElement = new Card(data.name, data.link, handleCardClick, '#cards').createCard();
-    section.addItem(cardsElement, 'prepend');
+    cardsContainer.addItem(cardsElement, 'prepend');
 });
 
-const section = new Section({
+const cardsContainer = new Section({
     items: initialCards, renderer: (item) => {
         return new Card(item.name, item.link, handleCardClick, '#cards').createCard();
     }
 }, '.elements');
 
-section.renderItems();
+cardsContainer.renderItems();
 
 const popupFormEdit = new PopupWithForm(popupEditForm, submitProfileForm);
 popupFormEdit.setEventListeners();
