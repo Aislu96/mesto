@@ -1,16 +1,16 @@
+import {UserInfo} from "./UserInfo";
+
 export class Section {
-    #renderedItems;
     #containerParentElement;
     #renderer;
 
-    constructor({items, renderer}, containerSelector) {
-        this.#renderedItems = items;
+    constructor({renderer}, containerSelector) {
         this.#renderer = renderer;
         this.#containerParentElement = document.querySelector(containerSelector);
     }
 
-    renderItems() {
-        this.#renderedItems.forEach(item => {
+    renderItems(cards) {
+        cards.forEach(item => {
             this.addItem(this.#renderer(item), 'append');
         });
     }

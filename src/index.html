@@ -78,9 +78,23 @@
         <button type="button" class="element__delete" aria-label="Урна"></button>
         <div class="element__group">
             <h2 class="element__text"></h2>
+            <div class="element__group_cards">
             <button type="button" class="element__button" aria-label="Лайк"></button>
+            <p class="element__number">0</p>
+            </div>
         </div>
     </article>
 </template>
+
+<div class="popup popup_delete_card">
+    <div class="popup__body">
+        <button type="button" class="popup__close popup__close_profile" aria-label="Закрыть"></button>
+        <form class="popup__container" name="popupForm" novalidate>
+            <h3 class="popup__title">Вы уверены?</h3>
+            <button type="submit" class="popup__button popup__button_type_text popup-delete__button" aria-label="Да">Да
+            </button>
+        </form>
+    </div>
+</div>
 </body>
 </html>

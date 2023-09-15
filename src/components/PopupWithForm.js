@@ -39,4 +39,5 @@ export class PopupWithForm extends Popup {
         //при закрытии попапа форма должна ещё и сбрасываться.
         this.popupContainer.reset();
     }
+
 }
