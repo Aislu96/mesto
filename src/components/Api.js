@@ -15,9 +15,6 @@ export class Api {
                 }
                 throw new Error('Что-то пошло не так...')
             })
-            .catch((error) => {
-                console.log(error);
-            })
     }
 
     getCards() {
@@ -87,14 +84,3 @@ export class Api {
         });
     }
 }
-
-
-const api = new Api({
-    url: 'https://mesto.nomoreparties.co/v1/cohort-75',
-    headers: {
-        authorization: '8f0f3959-562a-4d67-8672-647db07d1306',
-        'Content-Type': "application/json"
-    }
-});
-
-export default api;

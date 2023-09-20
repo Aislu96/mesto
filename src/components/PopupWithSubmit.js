@@ -4,11 +4,12 @@ export class PopupWithSubmit extends Popup {
     #popupYesButton;
     #submit;
     #id;
+    #popupForm;
 
     constructor(popup) {
         super(popup);
-        this.popupContainer = this.popup.querySelector('.popup__container');
-        this.#popupYesButton = this.popup.querySelector('.popup__button_delete');
+        this.#popupForm = this.popup.querySelector('.popup__container');
+        this.#popupYesButton = this.#popupForm.querySelector('.popup__button_delete');
     }
 
     open(id) {
@@ -23,7 +24,7 @@ export class PopupWithSubmit extends Popup {
     setEventListeners() {
         super.setEventListeners();
         //добавлять обработчик сабмита формы
-        this.#popupYesButton.addEventListener('click', (evt) => {
+        this.#popupForm.addEventListener('submit', (evt) => {
             evt.preventDefault();
             this.#submit(this.#id);
             this.close();

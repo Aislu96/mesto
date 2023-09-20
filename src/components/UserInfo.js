@@ -11,6 +11,6 @@ export class UserInfo {
     setUserInfo(user) {
         document.querySelector('.profile__title').textContent = user.name;
         document.querySelector('.profile__subtitle').textContent = user.about;
-        document.querySelector('.profile__avatar').src = user.avatar
+        document.querySelector('.profile__avatar').src = user.avatar;
     }
 }
