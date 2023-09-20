@@ -8,7 +8,7 @@ export class PopupWithSubmit extends Popup {
     constructor(popup) {
         super(popup);
         this.popupContainer = this.popup.querySelector('.popup__container');
-        this.#popupYesButton = this.popup.querySelector('.popup-delete__button');
+        this.#popupYesButton = this.popup.querySelector('.popup__button_delete');
     }
 
     open(id) {
