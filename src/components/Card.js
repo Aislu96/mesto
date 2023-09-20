@@ -46,14 +46,12 @@ export class Card {
 
     addLike(data) {
         this.#likeButton.classList.add('element__button_active');
-        this.#likes = data['likes'];
         this.#elementNumberLike.textContent = data['likes'].length;
     }
 
     deleteLike(data) {
         this.#likeButton.classList.remove('element__button_active');
-        this.#likes = data['likes'];
-        this.#elementNumberLike.textContent = data['likes'].length;
+        this.#elementNumberLike.textContent = data['likes'].length - 1;
     }
 
     #setEventListeners() {
