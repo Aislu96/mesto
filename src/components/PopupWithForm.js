@@ -5,6 +5,7 @@ export class PopupWithForm extends Popup {
     #handelSubmitForm;
     #submitButton;
     #formInput;
+    #submitButtonText;
 
 
     constructor(popup, handelSubmitForm) {
@@ -13,6 +14,7 @@ export class PopupWithForm extends Popup {
         this.#inputs = this.popupContainer.querySelectorAll('.popup__input');
         this.#submitButton = this.popupContainer.querySelector('.popup__button');
         this.#handelSubmitForm = handelSubmitForm;
+        this.#submitButtonText = this.#submitButton.textContent;
     }
 
 //собирает данные всех полей формы
@@ -32,6 +34,14 @@ export class PopupWithForm extends Popup {
             this.#handelSubmitForm(this.#getInputValues());
         });
 
+    }
+
+    saveData(isLoading) {
+        if(isLoading) {
+            this.#submitButton.textContent = 'Сохранение...'
+        } else {
+            this.#submitButton.textContent = this.#submitButtonText;
+        }
     }
 
     close() {

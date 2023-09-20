@@ -7,11 +7,8 @@ export class Api {
         this.#headers = headers;
     }
 
-    getCards() {
-        return fetch(`${this.#url}/cards`, {
-            method: "GET",
-            headers: this.#headers,
-        })
+    _sendRequest(url, options) {
+        return fetch(url, options)
             .then((response) => {
                 if (response.ok) {
                     return response.json();
@@ -21,108 +18,83 @@ export class Api {
             .catch((error) => {
                 console.log(error);
             })
+    }
+
+    getCards() {
+        return this._sendRequest(`${this.#url}/cards`, {
+            method: "GET",
+            headers: this.#headers,
+        });
     }
 
     getUser() {
-     return fetch(`${this.#url}/users/me`, {
+        return this._sendRequest(`${this.#url}/users/me`, {
             method: "GET",
             headers: this.#headers,
-        })
-            .then((response) => {
-                if (response.ok) {
-                    return response.json();
-                }
-                throw new Error('Что-то пошло не так...')
-            })
-            .catch((error) => {
-                console.log(error);
-            })
+        });
     }
 
     patchUser(data) {
-       return fetch(`${this.#url}/users/me`, {
+        return this._sendRequest(`${this.#url}/users/me`, {
             method: 'PATCH',
             headers: this.#headers,
             body: JSON.stringify({
                 name: data['input-name'],
                 about: data['input-job']
             })
-        })
-            .then((response) => {
-                if (response.ok) {
-                    return response.json();
-                }
-                throw new Error('Что-то пошло не так...')
-            })
-            .catch((error) => {
-                console.log(error);
-            })
+        });
     }
 
-    postCard(data){
-        return fetch(`${this.#url}/cards`, {
+    postCard(data) {
+        return this._sendRequest(`${this.#url}/cards`, {
             method: 'POST',
             headers: this.#headers,
             body: JSON.stringify({
                 name: data['input-username'],
                 link: data['input-url']
             })
-
         })
-            .then((response) => {
-                if (response.ok) {
-                    return response.json();
-                }
-                throw new Error('Что-то пошло не так...')
-            })
-            .catch((error) => {
-                console.log(error);
-            })
     }
-    deleteCard(id){
-        return fetch(`${this.#url}/cards/${id}`, {
+
+    deleteCard(id) {
+        return this._sendRequest(`${this.#url}/cards/${id}`, {
             method: 'DELETE',
             headers: this.#headers,
-        })
-            .then((response) => {
-                if (response.ok) {
-                    return response.json();
-                }
-                throw new Error('Что-то пошло не так...')
-            })
-            .catch((error) => {
-                console.log(error);
-            })
+        });
     }
-    likeCard(id){
-        return fetch(`${this.#url}/cards/${id}/likes`, {
+
+    likeCard(id) {
+        return this._sendRequest(`${this.#url}/cards/${id}/likes`, {
             method: 'PUT',
             headers: this.#headers,
-        })
-            .then((response) => {
-                if (response.ok) {
-                    return response.json();
-                }
-                throw new Error('Что-то пошло не так...')
-            })
-            .catch((error) => {
-                console.log(error);
-            })
+        });
     }
 
-    deleteLikeCard(id){
-        return fetch(`${this.#url}/cards/${id}/likes`, {
+    deleteLikeCard(id) {
+        return this._sendRequest(`${this.#url}/cards/${id}/likes`, {
             method: 'DELETE',
             headers: this.#headers,
-        })
-            .then((response) => {
-                if (response.ok) {
-                    return response.json();
-                }
-                throw new Error('Что-то пошло не так...')
+        });
+    }
+
+    patchAvatar(data) {
+        return this._sendRequest(`${this.#url}/users/me/avatar`, {
+            method: 'PATCH',
+            headers: this.#headers,
+            body: JSON.stringify({
+                avatar: data['input-url-avatar']
             })
-            .catch((error) => {
-                console.log(error);
-            })
+        });
     }
 }
+
+
+const api = new Api({
+    url: 'https://mesto.nomoreparties.co/v1/cohort-75',
+    headers: {
+        authorization: '8f0f3959-562a-4d67-8672-647db07d1306',
+        'Content-Type': "application/json"
+    }
+});
+
+export default api;
