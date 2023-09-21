@@ -61,6 +61,9 @@ function drawCard(data) {
                     .then(() => {
                         card.removeCard();
                     })
+                    .then(() => {
+                        popupDeleteUserCard.close();
+                    })
                     .catch((error) => {
                         console.log(error);
                     })
