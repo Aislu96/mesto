@@ -79,7 +79,7 @@ function drawCard(data) {
                 })
         }, (cardEl, id) => {
             api.deleteLikeCard(id)
-                .then(() => {
+                .then((data) => {
                     cardEl.deleteLike(data);
                 })
                 .catch((error) => {
